@@ -12,7 +12,7 @@ after_success:
   - docker build -t raman162/complex-nginx ./nginx
   - docker build -t raman162/complex-server ./server
   - docker build -t raman162/complex-worker ./worker
-  - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+  - echo -E "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
   - docker push raman162/complex-client
   - docker push raman162/complex-server
   - docker push raman162/complex-nginx
