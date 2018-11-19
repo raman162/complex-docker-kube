@@ -8,11 +8,11 @@ script:
   - docker run raman162/react-test npm test -- --coverage
 
 after_success:
+  - echo -E "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
   - docker build -t raman162/complex-client ./client
   - docker build -t raman162/complex-nginx ./nginx
   - docker build -t raman162/complex-server ./server
   - docker build -t raman162/complex-worker ./worker
-  - echo -E "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
   - docker push raman162/complex-client
   - docker push raman162/complex-server
   - docker push raman162/complex-nginx
