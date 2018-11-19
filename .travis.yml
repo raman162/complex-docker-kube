@@ -12,9 +12,8 @@ after_success:
   - docker build -t raman162/complex-nginx ./nginx
   - docker build -t raman162/complex-server ./server
   - docker build -t raman162/complex-worker ./worker
-  - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+  - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
   - docker push raman162/complex-client
   - docker push raman162/complex-server
   - docker push raman162/complex-nginx
   - docker push raman162/complex-worker
-#take those images and push them to docker hub
