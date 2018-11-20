@@ -17,3 +17,16 @@ after_success:
   - docker push raman162/complex-server
   - docker push raman162/complex-nginx
   - docker push raman162/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: complex-docker
+  environment: ComplexDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-340927681771
+  bucket_path: complex-docker
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
